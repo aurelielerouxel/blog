@@ -5,18 +5,19 @@
 {% block main %}
 
 <h2>Liste des articles</h2>
-
-{% for subject in subjects %}
-    <article class="card my-3">
-        <section class="card-header bg-dark">
-            <h3 class="card-title text-white">{{subject.category}}</h3>
-        </section>
-        <section class="card-body">
-            <h5 class="card-title text-muted">{{subject.userName}}</h5>
-            <p class="card-text">{{ subject.content|slice(0, 50) ~ '...' }}</p>
-            <a href="#" class="btn btn-danger">En savoir +</a>
-        </section>
-    </article>
-{% endfor %}
+<div class"container">
+    {% for subject in subjects %}
+        <article class="card my-3">
+            <section class="card-header bg-dark">
+                <h3 class="card-title text-white">{{subject.category}}</h3>
+            </section>
+            <section class="card-body">
+                <h5 class="card-title text-muted">{{subject.userName}}</h5>
+                <p class="card-text">{{ subject.content|slice(0, 50) ~ '...' }}</p>
+                <a href="{{ path('article',{'id':subject.id}) }}" class="btn btn-danger">En savoir +</a>
+            </section>
+        </article>
+    {% endfor %}
+</div>
 
 {% endblock %}
