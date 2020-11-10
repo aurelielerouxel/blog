@@ -1,0 +1,15 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Nouvelle question{% endblock %}
+
+{% block main %}
+
+    <h2>Poser votre question</h2>
+    {% for error in errors %}
+        <div class="alert-danger">
+            {{ error.message }}
+        </div>
+    {% endfor %}
+    {{form(form)}}
+
+{% endblock %}

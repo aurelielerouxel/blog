@@ -1,10 +1,15 @@
 {% extends "base.html.twig" %}
 
+{# REVOIR ERREURS #}
+
 {% block body %}
     <header class="jumbotron jumbotron-fluid bg-dark text-white mb-0">
         <section class="container">
             <h1 class="display-4">Blog</h1>
             <p class="lead">Parler de tout et n'importe quoi</p>
+            {% if app.user %}
+                <p>Bonjour {{app.user.username}}</p>
+            {% endif %}
         </section>
     </header>
 
@@ -16,6 +21,18 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ path("article") }}">Article</a>
             </li>
+            <li class="nav-item">    
+                <a class="nav-link text-white" href="{{ path("new_subject") }}">Nouveau sujet</a>
+            </li>
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{path('app_logout')}}" class="btn btn-dark">Deconnexion</a>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{ path("app_register") }}">S'inscrire</a>
+            </li>
+            <a href="{{path('app_login')}}" class="btn btn-dark">Connexion</a>
+            {% endif %}
         </ul>
     </nav>
 
